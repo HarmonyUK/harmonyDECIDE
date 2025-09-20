@@ -1,0 +1,2 @@
+DATABASE_URL: postgres://harmony:TheTriumverateOfCatsCalledErica@localhost/harmony_decide
+SECRET_KEY_BASE: a375f159aff1fa1d49ef0a2a19c1a81848fcda1aadb45902686d62922919999f113c8afb5dc2a7a2e06fb35ff9ba20641c3e58eb70df69828513a4cf0f109e9d
