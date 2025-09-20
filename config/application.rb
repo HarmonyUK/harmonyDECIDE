@@ -3,7 +3,7 @@ require_relative "boot"
 require "decidim/rails"
 
 # Add the frameworks used by your app that are not loaded by Decidim.
-# require "action_mailbox/engine"
+require "action_mailbox/engine"
 # require "action_text/engine"
 require "action_cable/engine"
 require "rails/test_unit/railtie"
@@ -24,6 +24,5 @@ module HarmonyDecide
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.active_job.queue_adapter = :delayed_job
   end
 end
