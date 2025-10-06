@@ -382,6 +382,10 @@ Decidim.configure do |config|
   # Read more: https://docs.decidim.org/en/develop/configure/initializer#_content_security_policy
   config.content_security_policies_extra = {}
 
+  # CiviCRM
+  config.register_participatory_space :Civicrm do |space|
+  end
+
   # Admin admin password configurations
   Rails.application.secrets.dig(:decidim, :admin_password, :strong).tap do |strong_pw|
     # When the strong password is not configured, default to true
