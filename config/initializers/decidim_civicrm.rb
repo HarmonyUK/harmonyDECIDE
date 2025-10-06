@@ -1,4 +1,5 @@
-Rails.application.config.after_initialize do
+# config/initializers/decidim_civicrm.rb
+
 Decidim::Civicrm.configure do |config|
   # Configure API credentials
   config.api = {
@@ -12,7 +13,7 @@ Decidim::Civicrm.configure do |config|
     enabled: Rails.application.credentials.dig(:civicrm, :omniauth, :enabled),
     client_id: Rails.application.credentials.dig(:civicrm, :omniauth, :client_id),
     client_secret: Rails.application.credentials.dig(:civicrm, :omniauth, :client_secret),
-    icon_path: "HarmonyLogo.png", # Ensure this file exists at app/packs/images/icon.png
+#   icon_path: "HarmonyLogo.png", # Ensure this file exists at app/packs/images/icon.png
     site: Rails.application.credentials.dig(:civicrm, :omniauth, :site)
   }
 
@@ -20,6 +21,5 @@ Decidim::Civicrm.configure do |config|
   config.send_verification_notifications = false
 
   # Optional: enable or disable verification methods
-  config.authorizations = [:civicrm, :civicrm_groups, :civicrm_membership_types]
-  end
+  # config.authorizations = [:civicrm, :civicrm_groups, :civicrm_membership_types]
 end
