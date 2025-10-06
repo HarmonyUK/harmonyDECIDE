@@ -16,3 +16,4 @@ You will need to do some steps before having the app working properly once you h
 
 You are good to go!
 # harmonyDECIDE
+# harmonyDECIDE
