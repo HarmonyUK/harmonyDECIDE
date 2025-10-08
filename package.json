@@ -2,10 +2,26 @@
   "name": "decidim-development-app",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/plugin-transform-runtime": "^7.17.0",
     "@decidim/browserslist-config": "^0.29.5",
     "@decidim/core": "^0.29.5",
     "@decidim/webpacker": "^0.29.5",
-    "decidim-module-civicrm": "/home/thedryhtscipe/.rbenv/versions/3.2.0/lib/ruby/gems/3.2.0/bundler/gems/decidim-module-civicrm-eb75b0b74167/",
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-no-relative-import-paths": "^1.5.3",
+    "eslint-plugin-node": "^11.1.0",
+    "graphql": "^15.10.1 || ^16",
+    "jquery": "^3.7.1",
+    "motion-ui": "^2.0.8",
+    "prettier": "^2.3.2",
+    "stylelint": "^15.3.0",
+    "stylelint-prettier": "^3.0.0",
+    "what-input": "^5.2.12",
     "yarn": "^1.22.22"
   },
   "version": "0.1.0",
@@ -19,4 +35,3 @@
     "extends @decidim/browserslist-config"
   ]
 }
-
