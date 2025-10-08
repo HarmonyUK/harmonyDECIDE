@@ -38,7 +38,8 @@
 .env
 .envrc
 .rbenv-vars
-
+/config/application.yml.
+/config/credentials.yml.enc
 # Ignore the files and folders generated through Webpack
 /public/decidim-packs
 /public/packs-test
