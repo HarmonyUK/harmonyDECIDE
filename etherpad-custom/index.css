@@ -1,0 +1,14 @@
+body {
+  background: linear-gradient(135deg, #eef3f8, #ffffff) !important;
+}
+h1, label, button {
+  font-family: "Inter", "Segoe UI", sans-serif !important;
+}
+#padname {
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+}
+button {
+  background-color: #007b7f !important;
+  border-radius: 6px;
+}
