@@ -1,0 +1,6 @@
+[submodule "decidim_buttondown"]
+	path = decidim_buttondown
+	url = https://github.com/YourUsername/decidim_buttondown.git
+[submodule "decidim_zoom"]
+	path = decidim_zoom
+	url = git@github.com:HarmonyUK/decidim_zoom.git
