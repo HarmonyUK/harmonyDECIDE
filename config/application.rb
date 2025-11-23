@@ -1,6 +1,8 @@
 require_relative "boot"
 
 require "decidim/rails"
+require_relative "../decidim_discord/lib/decidim_discord"
+require "decidim_buttondown"
 
 # Add the frameworks used by your app that are not loaded by Decidim.
 require "action_mailbox/engine"

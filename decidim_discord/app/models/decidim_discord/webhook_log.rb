@@ -6,5 +6,6 @@ module DecidimDiscord
 
     scope :recent, -> { order(created_at: :desc).limit(100) }
     scope :failed, -> { where(success: false) }
+    scope :successful, -> { where(success: true) }
   end
 end

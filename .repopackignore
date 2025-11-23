@@ -1,0 +1,112 @@
+# ============================================
+# HARMONY DECIDE - REPOIGNORE FOR CODE ANALYSIS
+# ============================================
+
+# Misc stuff
+
+decidim_discord/node_modules/
+decidim_discord/tmp/
+decidim_discord/log/
+*.log
+.DS_Store
+
+# Ignore db, media
+
+db/*
+media/*
+
+# Ignore standard Rails boilerplate
+#app/channels/application_cable/*
+#app/helpers/application_helper.rb
+#app/jobs/application_job.rb
+#app/mailers/application_mailer.rb
+#app/models/application_record.rb
+#app/views/layouts/mailer.html.erb
+
+# Ignore generated/bin files
+bin/*
+!bin/rails
+!bin/rake
+
+# Ignore development/test configs that don't contain custom logic
+config/environments/test.rb
+config/initializers/content_security_policy.rb
+config/initializers/filter_parameter_logging.rb
+config/initializers/inflections.rb
+config/initializers/permissions_policy.rb
+config/spring.rb
+config/boot.rb
+config/cable.yml
+config/environment.rb
+config/storage.yml
+
+# Ignore nginx configs (infrastructure, not application code)
+config/nginx/**
+
+# Ignore webpack configs (mostly generated)
+config/webpack/**
+
+# Ignore test files
+test/**
+
+# Ignore public assets
+public/422.html
+public/robots.txt
+
+# Ignore empty/generated files
+config/locales/en.yml
+config/initializers/decidim_civicrm.rb  # Commented out code
+
+# Ignore development/production environment configs (standard Rails)
+config/environments/development.rb
+#config/environments/production.rb
+
+# Keep only custom initializers
+#config/initializers/!(*.rb)
+#config/initializers/decidim.rb
+#config/initializers/keycloak_fix.rb
+#config/initializers/rack_attack.rb
+#config/initializers/session_store.rb
+
+# Ignore project infrastructure files
+.gitattributes
+.node-version
+.rubocop.yml
+.ruby-version
+docker-compose-etherpad.yml
+docker-compose.yml
+Dockerfile
+postcss.config.js
+Procfile.dev
+temp.sh
+tsconfig.json
+
+# Keep these important files
+!config/application.rb
+!config/routes.rb
+!config/database.yml
+!config/puma.rb
+!config/secrets.yml
+!Gemfile
+!package.json
+!Rakefile
+!README.md
+!config.ru
+
+# Ignore css, we're not doing styling right now
+
+app/packs/stylesheets/*
+
+# Ignore static files entirely
+
+app/views/static/*
+
+# Ignore some specifics
+
+LICENSE-AGPLv3.txt
+Gemfile.lock
+
+# Ignore Etherpad entirely
+
+etherpad-custom/*
+ether*

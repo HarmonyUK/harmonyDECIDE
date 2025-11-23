@@ -6,24 +6,7 @@ module DecidimDiscord
       webhook = DecidimDiscord::DiscordWebhook.find(webhook_id)
       return unless webhook.active?
 
-      # Inline message formatting for now
-      message = {
-        content: nil,
-        embeds: [
-          {
-            title: "📝 New Proposal Created",
-            description: payload[:proposal_title],
-            color: 0x3498db,
-            fields: [
-              { name: "Assembly", value: payload[:assembly_name], inline: true },
-              { name: "Component", value: payload[:component_name], inline: true },
-              { name: "Author", value: payload[:author_name], inline: true },
-              { name: "URL", value: "[View Proposal](#{payload[:proposal_url]})", inline: false }
-            ],
-            timestamp: Time.current.iso8601
-          }
-        ]
-      }
+      message = DecidimDiscord::MessageFormatterService.format(event_type.to_sym, payload)
       
       response = HTTParty.post(
         webhook.webhook_url,

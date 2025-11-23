@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_10_05_131466) do
+ActiveRecord::Schema[7.0].define(version: 2025_11_19_124101) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
   enable_extension "pg_trgm"
@@ -42,6 +42,20 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_05_131466) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "buttondown_census_entries", force: :cascade do |t|
+    t.string "email", null: false
+    t.bigint "organization_id"
+    t.datetime "subscribed_at", precision: nil
+    t.jsonb "metadata", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "subscriber_id"
+    t.boolean "active", default: true
+    t.index ["email", "organization_id"], name: "index_buttondown_census_entries_on_email_and_organization_id", unique: true
+    t.index ["organization_id"], name: "index_buttondown_census_entries_on_organization_id"
+    t.index ["subscriber_id"], name: "index_buttondown_census_entries_on_subscriber_id"
   end
 
   create_table "decidim_accountability_results", id: :serial, force: :cascade do |t|
@@ -787,6 +801,36 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_05_131466) do
     t.index ["decidim_user_group_id"], name: "index_decidim_debates_debates_on_decidim_user_group_id"
     t.index ["deleted_at"], name: "index_decidim_debates_debates_on_deleted_at"
     t.index ["endorsements_count"], name: "idx_decidim_debates_debates_on_endorsemnts_count"
+  end
+
+  create_table "decidim_discord_webhook_logs", force: :cascade do |t|
+    t.bigint "discord_webhook_id"
+    t.string "event_type"
+    t.integer "status"
+    t.text "response_body"
+    t.boolean "success", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "idx_webhook_logs_created"
+    t.index ["created_at"], name: "index_webhook_logs_on_created_at"
+    t.index ["discord_webhook_id", "created_at"], name: "index_webhook_logs_on_webhook_id_and_created_at"
+    t.index ["discord_webhook_id"], name: "idx_webhook_logs_webhook"
+    t.index ["discord_webhook_id"], name: "index_webhook_logs_on_webhook_id"
+    t.index ["success"], name: "idx_webhook_logs_success"
+    t.index ["success"], name: "index_webhook_logs_on_success"
+  end
+
+  create_table "decidim_discord_webhooks", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "webhook_url", null: false
+    t.json "event_types", default: []
+    t.boolean "active", default: true
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["active", "id"], name: "index_decidim_discord_webhooks_on_active_and_id"
+    t.index ["active"], name: "index_decidim_discord_webhooks_on_active"
+    t.index ["webhook_url"], name: "index_decidim_discord_webhooks_on_webhook_url", unique: true
   end
 
   create_table "decidim_editor_images", force: :cascade do |t|
@@ -2083,6 +2127,19 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_05_131466) do
     t.index ["decidim_organization_id"], name: "index_verifications_csv_census_to_organization"
   end
 
+  create_table "decidim_zoom_meetings", force: :cascade do |t|
+    t.bigint "decidim_meeting_id", null: false
+    t.string "zoom_meeting_id", null: false
+    t.string "zoom_meeting_password"
+    t.text "join_url", null: false
+    t.text "start_url", null: false
+    t.jsonb "metadata", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_meeting_id"], name: "index_decidim_zoom_meetings_on_decidim_meeting_id"
+    t.index ["zoom_meeting_id"], name: "index_decidim_zoom_meetings_on_zoom_meeting_id", unique: true
+  end
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
@@ -2161,6 +2218,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_05_131466) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "buttondown_census_entries", "decidim_organizations", column: "organization_id"
   add_foreign_key "decidim_area_types", "decidim_organizations"
   add_foreign_key "decidim_areas", "decidim_area_types", column: "area_type_id"
   add_foreign_key "decidim_areas", "decidim_organizations"
@@ -2186,6 +2244,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_05_131466) do
   add_foreign_key "decidim_civicrm_groups", "decidim_organizations"
   add_foreign_key "decidim_civicrm_membership_types", "decidim_organizations"
   add_foreign_key "decidim_debates_debates", "decidim_scopes"
+  add_foreign_key "decidim_discord_webhook_logs", "decidim_discord_webhooks", column: "discord_webhook_id"
   add_foreign_key "decidim_editor_images", "decidim_organizations"
   add_foreign_key "decidim_editor_images", "decidim_users", column: "decidim_author_id"
   add_foreign_key "decidim_identities", "decidim_organizations"
@@ -2217,6 +2276,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_05_131466) do
   add_foreign_key "decidim_verifications_conflicts", "decidim_users", column: "current_user_id"
   add_foreign_key "decidim_verifications_conflicts", "decidim_users", column: "managed_user_id"
   add_foreign_key "decidim_verifications_csv_data", "decidim_organizations"
+  add_foreign_key "decidim_zoom_meetings", "decidim_meetings_meetings", column: "decidim_meeting_id"
   add_foreign_key "oauth_access_grants", "decidim_users", column: "resource_owner_id"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "decidim_users", column: "resource_owner_id"

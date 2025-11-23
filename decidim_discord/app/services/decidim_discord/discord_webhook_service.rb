@@ -1,4 +1,3 @@
-# app/services/decidim_discord/discord_webhook_service.rb
 module DecidimDiscord
   class DiscordWebhookService
     def self.notify(event_type, payload)

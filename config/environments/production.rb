@@ -102,4 +102,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  config.hosts << "decide.nothingabout.us" 
+  config.hosts << "decide.harmonyuk.org" 
 end
+

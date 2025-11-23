@@ -13,11 +13,32 @@
         <%= link_to t("decidim.devise.sessions.new.register"), new_user_registration_path %>
       </p>
     <% elsif current_organization.sign_in_enabled? %>
-     <p class="text-neutral mb-8">To sign up or sign in, in most cases you should click the HarmonyAuth button, below. If you have a login, you can still use it.
-     </p>
+      <%# Organization-specific login instructions %>
+      <% if current_organization.host == 'decide.harmonyuk.org' %>
+        <%# HarmonyUK with Keycloak %>
+        <p class="text-neutral mb-8">
+          To sign up or sign in, in most cases you should click the HarmonyAuth button, below.
+          If you have a login, you can still use it.
+        </p>
+      <% else %>
+        <%# NAU or other orgs - standard Decidim login %>
+        <p>
+          <%= t("decidim.devise.sessions.new.are_you_new?") %>
+          <%= link_to t("decidim.devise.sessions.new.register"), new_user_registration_path %>
+        </p>
+      <% end %>
     <% else %>
-     <p class="text-neutral mb-8">To sign up or sign in, in most cases you should click the HarmonyAuth button, below. If you have a login, you can still use it.
-     </p>
+      <%# Sign in disabled, sign up disabled %>
+      <% if current_organization.host == 'decide.harmonyuk.org' %>
+        <p class="text-neutral mb-8">
+          To sign up or sign in, in most cases you should click the HarmonyAuth button, below.
+          If you have a login, you can still use it.
+        </p>
+      <% else %>
+        <p class="text-neutral mb-8">
+          Please use the authentication options below to sign in.
+        </p>
+      <% end %>
     <% end %>
   </div>
 

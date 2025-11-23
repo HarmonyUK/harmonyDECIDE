@@ -28,6 +28,8 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  decidim_zoom:
+    meetings:
+      join_meeting: "Join the meeting."
+      leave_meeting: "Leave the meeting."

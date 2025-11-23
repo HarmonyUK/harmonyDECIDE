@@ -1,0 +1,106 @@
+<div class="card">
+  <div class="card-section">
+    <%= decidim_form_for(@form, 
+                        url: @form.persisted? ? admin_discord_webhook_path(@form) : admin_discord_webhooks_path,
+                        method: @form.persisted? ? :patch : :post) do |form| %>
+
+      <div class="form__wrapper">
+        <div class="field">
+          <%= form.text_field :name, 
+                             label: t("models.discord_webhook.fields.name", scope: "decidim.decidim_discord.admin"),
+                             placeholder: t("models.discord_webhook.fields.name_placeholder", scope: "decidim.decidim_discord.admin"),
+                             required: true %>
+        </div>
+
+        <div class="field">
+          <%= form.text_field :webhook_url,
+                             label: t("models.discord_webhook.fields.webhook_url", scope: "decidim.decidim_discord.admin"),
+                             placeholder: "https://discord.com/api/webhooks/...",
+                             required: true %>
+          <p class="help-text">
+            <%= t("models.discord_webhook.fields.webhook_url_help", scope: "decidim.decidim_discord.admin") %>
+            <%= link_to t("how_to_create_webhook", scope: "decidim.decidim_discord.admin"), 
+                        "https://support.discord.com/hc/en-us/articles/228383668", 
+                        target: "_blank", 
+                        rel: "noopener" %>.
+          </p>
+        </div>
+
+        <div class="field">
+          <h4 class="section-heading">
+            <%= t("models.discord_webhook.fields.event_types", scope: "decidim.decidim_discord.admin") %>
+          </h4>
+          <p class="help-text"><%= t("models.discord_webhook.fields.event_types_help", scope: "decidim.decidim_discord.admin") %></p>
+          
+          <div class="row small-up-1 medium-up-2 mt-2">
+            <div class="column">
+              <label class="check-box-label">
+                <%= form.check_box :event_types,
+                                  { multiple: true, include_hidden: false, label: false },
+                                  "proposal_created",
+                                  nil %>
+                <span class="check-box-text">
+                  <%= t("event_types.proposal_created", scope: "decidim.decidim_discord.admin") %>
+                </span>
+              </label>
+            </div>
+            <div class="column">
+              <label class="check-box-label">
+                <%= form.check_box :event_types,
+                                  { multiple: true, include_hidden: false, label: false },
+                                  "proposal_status_changed",
+                                  nil %>
+                <span class="check-box-text">
+                  <%= t("event_types.proposal_status_changed", scope: "decidim.decidim_discord.admin") %>
+                </span>
+              </label>
+            </div>
+            <div class="column">
+              <label class="check-box-label">
+                <%= form.check_box :event_types,
+                                  { multiple: true, include_hidden: false, label: false },
+                                  "amendment_created",
+                                  nil %>
+                <span class="check-box-text">
+                  <%= t("event_types.amendment_created", scope: "decidim.decidim_discord.admin") %>
+                </span>
+              </label>
+            </div>
+            <div class="column">
+              <label class="check-box-label">
+                <%= form.check_box :event_types,
+                                  { multiple: true, include_hidden: false, label: false },
+                                  "endorsement_milestone",
+                                  nil %>
+                <span class="check-box-text">
+                  <%= t("event_types.endorsement_milestone", scope: "decidim.decidim_discord.admin") %>
+                </span>
+              </label>
+            </div>
+          </div>
+          <p class="form-error is-visible" data-form-error-for="decidim_discord_discord_webhook_form_event_types">
+            <%= t("required_field", scope: "decidim.forms") %>
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="check-box-label">
+            <%= form.check_box :active, { label: false } %>
+            <span class="check-box-text">
+              <%= t("models.discord_webhook.fields.active", scope: "decidim.decidim_discord.admin") %>
+            </span>
+          </label>
+          <p class="help-text"><%= t("models.discord_webhook.fields.active_help", scope: "decidim.decidim_discord.admin") %></p>
+        </div>
+      </div>
+
+      <div class="form__wrapper-block">
+        <%= form.submit t("buttons.save", scope: "decidim.decidim_discord.admin"),
+                       class: "button button__sm button__primary" %>
+        <%= link_to t("buttons.cancel", scope: "decidim.decidim_discord.admin"),
+                   admin_discord_webhooks_path,
+                   class: "button button__sm button__secondary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

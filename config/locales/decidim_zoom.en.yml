@@ -1,0 +1,13 @@
+en:
+  decidim_zoom:
+    meetings:
+      join_meeting: "Join Meeting"
+      leave_meeting: "Leave Meeting"
+      join_button_label: "Click to join the Zoom meeting"
+      leave_button_label: "Leave the Zoom meeting"
+      container_label: "Zoom meeting video player"
+      status:
+        live: "🟢 Meeting is live - you can join now"
+        not_started: "⏱️ Meeting hasn't started yet - please wait"
+        ended: "✕ Meeting has ended"
+        unknown: "Meeting status unknown"

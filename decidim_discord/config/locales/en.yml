@@ -1,0 +1,93 @@
+en:
+  decidim:
+    decidim_discord:
+      admin:
+        active: "Active"
+        inactive: "Inactive"
+        how_to_create_webhook: "How to create a Discord webhook"
+        menu: "Discord Webhooks"
+        models:
+          discord_webhook:
+            fields:
+              name: "Name"
+              name_placeholder: "e.g., Proposals Notifications"
+              name_help: "A descriptive name for this webhook"
+              webhook_url: "Webhook URL"
+              webhook_url_help: "The Discord webhook URL from your channel settings"
+              event_types: "Event Types"
+              event_types_help: "Select which events should trigger notifications to this webhook"
+              active: "Active"
+              active_help: "Enable or disable this webhook"
+              created_at: "Created At"
+          webhook_log:
+            fields:
+              event_type: "Event Type"
+              status: "Status Code"
+              success: "Success"
+              response_body: "Response Body"
+              created_at: "Created At"
+        discord_webhooks:
+          index:
+            title: "Discord Webhooks"
+            description: "Manage Discord webhooks for Decidim events"
+            no_webhooks: "No webhooks configured yet."
+            new_webhook: "New Webhook"
+          new:
+            title: "New Discord Webhook"
+            save: "Create Webhook"
+          edit:
+            title: "Edit Discord Webhook"
+            save: "Update Webhook"
+          create:
+            success: "Webhook created successfully."
+            error: "There was a problem creating the webhook."
+          update:
+            success: "Webhook updated successfully."
+            error: "There was a problem updating the webhook."
+          destroy:
+            success: "Webhook deleted successfully."
+          toggle:
+            activated: "Webhook activated successfully."
+            deactivated: "Webhook deactivated successfully."
+          test:
+            success: "Test notification sent successfully. Check Discord!"
+            error: "Failed to send test notification. Check the logs for details."
+        webhook_logs:
+          index:
+            title: "Webhook Logs"
+            description: "View delivery history for %{webhook_name}"
+            no_logs: "No logs found for this webhook."
+            back: "Back to Webhooks"
+          show:
+            title: "Log Details"
+            back: "Back to Logs"
+        table:
+          name: "Name"
+          webhook_url: "Webhook URL"
+          event_types: "Event Types"
+          status: "Status"
+          created_at: "Created"
+          actions: "Actions"
+          event_type: "Event Type"
+          status_code: "Status Code"
+          success: "Success"
+          response_body: "Response"
+        buttons:
+          edit: "Edit"
+          delete: "Delete"
+          toggle: "Toggle"
+          test: "Test"
+          logs: "Logs"
+          show: "Show"
+          back: "Back"
+          save: "Save"
+          cancel: "Cancel"
+        confirm:
+          delete: "Are you sure you want to delete this webhook?"
+        event_types:
+          proposal_created: "Proposal Created"
+          proposal_status_changed: "Proposal Status Changed"
+          amendment_created: "Amendment Created"
+          endorsement_milestone: "Endorsement Milestone Reached"
+        errors:
+          invalid_discord_webhook: "must be a valid Discord webhook URL"

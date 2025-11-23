@@ -1,0 +1,56 @@
+// ============================================
+// HARMONY UK - DARK THEME VARIABLES
+// ============================================
+
+// Brand Colors
+$harmony-primary: #dc0000;
+$harmony-accent: #e0ab76;
+$harmony-bg-dark: #0a0a0a;
+$harmony-bg-darker: #000000;
+
+// Neutral Colors
+$harmony-neutral-50: #fafafa;
+$harmony-neutral-100: #f5f5f5;
+$harmony-neutral-200: #e5e5e5;
+$harmony-neutral-300: #d4d4d4;
+$harmony-neutral-400: #a3a3a3;
+$harmony-neutral-500: #737373;
+$harmony-neutral-600: #525252;
+$harmony-neutral-700: #404040;
+$harmony-neutral-800: #262626;
+$harmony-neutral-900: #171717;
+
+// Semantic Colors
+$harmony-success: #27ae60;
+$harmony-warning: #f39c12;
+$harmony-error: #e74c3c;
+$harmony-info: #3498db;
+
+// CSS Custom Properties
+:root {
+    // Brand colors
+    --harmony-primary: #{$harmony-primary};
+    --harmony-accent: #{$harmony-accent};
+    --harmony-bg-dark: #{$harmony-bg-dark};
+
+    // Text colors
+    --harmony-text-primary: #{$harmony-neutral-100};
+    --harmony-text-secondary: #{$harmony-neutral-300};
+    --harmony-text-muted: #{$harmony-neutral-500};
+
+    // Background colors
+    --harmony-bg-primary: #{$harmony-bg-dark};
+    --harmony-bg-secondary: #{$harmony-neutral-900};
+    --harmony-bg-tertiary: #{$harmony-neutral-800};
+
+    // Border colors
+    --harmony-border-primary: #{$harmony-neutral-700};
+    --harmony-border-secondary: #{$harmony-neutral-600};
+
+    // Override Decidim's default variables
+    --primary: #{$harmony-primary};
+    --secondary: #{$harmony-neutral-900};
+    --success: #{$harmony-success};
+    --warning: #{$harmony-warning};
+    --alert: #{$harmony-error};
+}

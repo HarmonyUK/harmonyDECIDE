@@ -3,11 +3,17 @@ module DecidimDiscord
     self.table_name = "decidim_discord_webhooks"
 
     validates :webhook_url, :name, presence: true
-    validates :webhook_url, format: { with: %r{\Ahttps://(?:discordapp|discord)\.com/api/webhooks/}, message: "must be a valid Discord webhook URL" }
-    scope :active, -> { where(active: true) }
-    scope :for_event, ->(event_type) { where("event_types::jsonb @> ?::jsonb", "[\"#{event_type}\"]") }
+    validates :webhook_url, format: {
+      with: %r{\Ahttps://(?:discordapp|discord)\.com/api/webhooks/},
+      message: "must be a valid Discord webhook URL"
+    }
 
-    has_many :webhook_logs, class_name: "DecidimDiscord::WebhookLog", foreign_key: "discord_webhook_id"
+    scope :active, -> { where(active: true) }
+    scope :for_event, ->(event_type) { where("event_types::jsonb @> ?::jsonb", [event_type.to_s].to_json) }
+
+    has_many :webhook_logs, class_name: "DecidimDiscord::WebhookLog",
+                            foreign_key: "discord_webhook_id",
+                            dependent: :destroy
 
     def toggle!
       update(active: !active)

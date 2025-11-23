@@ -209,6 +209,16 @@ Decidim.configure do |config|
   # If not set, it will be ignored.
   config.base_uploads_path = Rails.application.secrets.decidim[:base_uploads_path] if Rails.application.secrets.decidim[:base_uploads_path].present?
 
+config.content_security_policies_extra = {
+  "script-src"   => ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://source.zoom.us", "https://zoom.us", "blob:"],
+  "worker-src"   => ["'self'", "blob:", "https://source.zoom.us"],
+  "child-src"    => ["'self'", "blob:", "https://source.zoom.us"],
+  "frame-src"    => ["https://source.zoom.us", "https://*.zoom.us", "https://decide.harmonyuk.org"],
+  "connect-src"  => ["'self'", "https://source.zoom.us", "https://*.zoom.us", "wss:", "ws:"],
+  "img-src"      => ["'self'", "data:", "https://source.zoom.us"],
+  "media-src"    => ["'self'", "data:", "https://source.zoom.us"]
+}
+
   # SMS gateway configuration
   #
   # If you want to verify your users by sending a verification code via
@@ -378,10 +388,6 @@ Decidim.configure do |config|
   #   }
   # ]
 
-  # Defines additional content security policies following the structure
-  # Read more: https://docs.decidim.org/en/develop/configure/initializer#_content_security_policy
-  config.content_security_policies_extra = {}
-
   # CiviCRM
   config.register_participatory_space :Civicrm do |space|
   end
@@ -479,3 +485,15 @@ Rails.application.config.i18n.default_locale = Decidim.default_locale
 
 # Inform Decidim about the assets folder
 Decidim.register_assets_path File.expand_path("app/packs", Rails.application.root)
+
+#Rails.application.config.content_security_policy do |policy|
+#  policy.default_src :self, :unsafe_inline
+#  policy.script_src :self, :unsafe_inline, :unsafe_eval, "https://source.zoom.us", "https://*.zoom.us", "https://zoom.us"
+#  policy.style_src :self, :unsafe_inline
+#  policy.img_src :self, :data
+#  policy.font_src :self
+#  policy.connect_src :self, "https://*.zoom.us", "https://zoom.us", "wss://*.zoom.us"
+#  policy.frame_src :self, "https://*.zoom.us", "https://zoom.us", "https://www.youtube-nocookie.com", "https://player.vimeo.com", "https://player.twitch.tv", "https://meet.jit.si", "https://decide.harmonyuk.org"
+#  policy.media_src :self
+#  policy.worker_src :blob
+#end

@@ -4,7 +4,6 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-gem "figaro"
 gem "decidim", "0.29.5"
 # gem "decidim-ai", "0.30.1"
 gem "decidim-conferences", "0.29.5"
@@ -13,12 +12,18 @@ gem "decidim-conferences", "0.29.5"
 #gem "decidim-initiatives", "0.29.5"
 #gem "decidim-templates", "0.29.5" 
 #gem "decidim-spam_signal", "~> 0.4.0"
-gem "decidim-civicrm", github: "openpoke/decidim-module-civicrm"
+gem "decidim_discord", path: "./decidim_discord"
+gem "decidim-keycloak", git: "https://github.com/HarmonyUK/decidim-module-keycloak", branch: "main"
+gem 'decidim_zoom', path: './decidim_zoom'
+gem 'decidim_buttondown', path: './decidim_buttondown'
 gem "mutex_m"
 gem "bootsnap", "~> 1.3"
 gem "puma", ">= 6.3.1"
 gem "daemons"
 gem "sidekiq"
+gem 'httparty'
+gem "rectify", "~> 0.5"  # latest compatible with Rails 7/Decidim 0.29
+gem 'pundit', '~> 2.3'
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
@@ -35,4 +40,3 @@ group :development do
 end
 group :production do
 end
-

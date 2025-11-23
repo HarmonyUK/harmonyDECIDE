@@ -1,0 +1,547 @@
+// ============================================
+// HARMONY UK - COMPONENT-SPECIFIC OVERRIDES
+// ============================================
+
+@import "harmony_variables";
+
+// ============================================
+// PROPOSALS COMPONENT
+// ============================================
+
+// Proposal cards
+.proposal-card, .card--proposal, .decidim-proposal {
+    background-color: $harmony-neutral-900 !important;
+    border: 1px solid $harmony-neutral-700 !important;
+
+    .card__title, .card__header {
+        background-color: $harmony-neutral-800 !important;
+        border-bottom: 1px solid $harmony-neutral-700 !important;
+        color: $harmony-neutral-100 !important;
+    }
+
+    .card__text, .card__content {
+        background-color: $harmony-neutral-900 !important;
+        color: $harmony-neutral-100 !important;
+    }
+
+    .card__footer {
+        background-color: $harmony-neutral-800 !important;
+        border-top: 1px solid $harmony-neutral-700 !important;
+    }
+
+    // Proposal metadata
+    .card__footer--spaces, .author-data {
+        background-color: transparent !important;
+        color: $harmony-neutral-300 !important;
+
+        .author__name {
+            color: $harmony-accent !important;
+        }
+    }
+
+    // Proposal status badges
+    .card__status {
+        .success, .accepted {
+            background-color: $harmony-success !important;
+            color: white !important;
+        }
+
+        .warning, .evaluating {
+            background-color: $harmony-warning !important;
+            color: black !important;
+        }
+
+        .alert, .rejected {
+            background-color: $harmony-error !important;
+            color: white !important;
+        }
+    }
+}
+
+// Proposal filters and sorting
+.filters, .filters__section {
+    background-color: $harmony-neutral-900 !important;
+    border-color: $harmony-neutral-700 !important;
+
+    .filter-search {
+        background-color: $harmony-neutral-800 !important;
+
+        input {
+            background-color: $harmony-neutral-800 !important;
+            border-color: $harmony-neutral-700 !important;
+            color: $harmony-neutral-100 !important;
+        }
+    }
+}
+
+// Proposal stats and progress
+.proposal-stats, .progress__bar {
+    background-color: $harmony-neutral-800 !important;
+
+    .progress__bar__bar {
+        background: linear-gradient(135deg, $harmony-primary 0%, darken($harmony-primary, 10%) 100%) !important;
+    }
+}
+
+// ============================================
+// MEETINGS COMPONENT
+// ============================================
+
+.meeting-card, .card--meeting {
+    background-color: $harmony-neutral-900 !important;
+    border-color: $harmony-neutral-700 !important;
+
+    .card__header {
+        background-color: $harmony-neutral-800 !important;
+        border-color: $harmony-neutral-700 !important;
+    }
+
+    .meeting-date {
+        color: $harmony-accent !important;
+        font-weight: bold;
+    }
+
+    .meeting-location {
+        color: $harmony-neutral-300 !important;
+    }
+}
+
+// Meeting agenda
+.agenda, .meeting-agenda {
+    background-color: $harmony-neutral-900 !important;
+
+    .agenda-item {
+        border-color: $harmony-neutral-700 !important;
+        background-color: $harmony-neutral-800 !important;
+
+        &:hover {
+            background-color: $harmony-neutral-700 !important;
+        }
+    }
+}
+
+// ============================================
+// COMMENTS AND DEBATES
+// ============================================
+
+.comment, .comment-thread, .debate-comment {
+    background-color: $harmony-neutral-900 !important;
+    border-color: $harmony-neutral-700 !important;
+
+    .comment-header, .comment__header {
+        background-color: $harmony-neutral-800 !important;
+        border-color: $harmony-neutral-700 !important;
+
+        .comment-author {
+            color: $harmony-accent !important;
+        }
+
+        .comment-date {
+            color: $harmony-neutral-400 !important;
+        }
+    }
+
+    .comment-content, .comment__content {
+        background-color: $harmony-neutral-900 !important;
+        color: $harmony-neutral-100 !important;
+    }
+}
+
+// Comment form
+.add-comment, .comment-form {
+    background-color: $harmony-neutral-900 !important;
+    border-color: $harmony-neutral-700 !important;
+
+    textarea {
+        background-color: $harmony-neutral-800 !important;
+        border-color: $harmony-neutral-700 !important;
+        color: $harmony-neutral-100 !important;
+    }
+}
+
+// ============================================
+// BUDGETS COMPONENT
+// ============================================
+
+.budget-card, .card--budget {
+    background-color: $harmony-neutral-900 !important;
+    border-color: $harmony-neutral-700 !important;
+
+    .budget-amount, .budget__amount {
+        color: $harmony-accent !important;
+        font-weight: bold;
+    }
+
+    .budget-progress {
+        background-color: $harmony-neutral-800 !important;
+
+        .progress-fill {
+            background: linear-gradient(135deg, $harmony-primary 0%, darken($harmony-primary, 10%) 100%) !important;
+        }
+    }
+}
+
+// Budget summary
+.budget-summary, .budgets-stats {
+    background-color: $harmony-neutral-900 !important;
+    border-color: $harmony-neutral-700 !important;
+
+    .budget-total {
+        color: $harmony-accent !important;
+    }
+}
+
+// ============================================
+// INITIATIVES COMPONENT
+// ============================================
+
+.initiative-card, .card--initiative {
+    background-color: $harmony-neutral-900 !important;
+    border-color: $harmony-neutral-700 !important;
+
+    .initiative-signatures, .initiative__signatures {
+        color: $harmony-accent !important;
+    }
+
+    .initiative-status {
+        &.published { background-color: $harmony-success !important; }
+        &.validating { background-color: $harmony-warning !important; }
+        &.discarded { background-color: $harmony-error !important; }
+    }
+}
+
+// ============================================
+// PROCESSES AND ASSEMBLIES
+// ============================================
+
+.process-card, .assembly-card, .conference-card {
+    background-color: $harmony-neutral-900 !important;
+    border-color: $harmony-neutral-700 !important;
+
+    .card__title, .card__header {
+        background: linear-gradient(135deg, $harmony-primary 0%, darken($harmony-primary, 10%) 100%) !important;
+        color: white !important;
+    }
+
+    .process-date, .assembly-date {
+        color: $harmony-accent !important;
+    }
+}
+
+// Process steps
+.process-steps, .steps {
+    background-color: $harmony-neutral-900 !important;
+
+    .step {
+        background-color: $harmony-neutral-800 !important;
+        border-color: $harmony-neutral-700 !important;
+
+        &.current, &.active {
+            background-color: $harmony-primary !important;
+            color: white !important;
+        }
+
+        &.past {
+            background-color: $harmony-neutral-600 !important;
+            color: $harmony-neutral-100 !important;
+        }
+    }
+}
+
+// ============================================
+// USER PROFILES AND ACCOUNTS
+// ============================================
+
+.profile-card, .user-card {
+    background-color: $harmony-neutral-900 !important;
+    border-color: $harmony-neutral-700 !important;
+
+    .profile-stats, .user-stats {
+        background-color: $harmony-neutral-800 !important;
+
+        .stat-number {
+            color: $harmony-accent !important;
+        }
+
+        .stat-label {
+            color: $harmony-neutral-300 !important;
+        }
+    }
+}
+
+// Profile tabs
+.profile-tabs, .tabs-content {
+    background-color: $harmony-neutral-900 !important;
+
+    .tabs-title {
+        background-color: $harmony-neutral-800 !important;
+
+        a {
+            color: $harmony-neutral-100 !important;
+
+            &:hover, &.active {
+                background-color: $harmony-primary !important;
+                color: white !important;
+            }
+        }
+    }
+
+    .tabs-panel {
+        background-color: $harmony-neutral-900 !important;
+        border-color: $harmony-neutral-700 !important;
+    }
+}
+
+// ============================================
+// FORMS AND INPUTS (COMPREHENSIVE)
+// ============================================
+
+// Form containers
+.form, .decidim-form, .filter-form {
+    background-color: $harmony-neutral-900 !important;
+
+    .form-input, .input-group {
+        background-color: $harmony-neutral-800 !important;
+        border-color: $harmony-neutral-700 !important;
+
+        label {
+            color: $harmony-neutral-100 !important;
+        }
+
+        input, select, textarea {
+            background-color: $harmony-neutral-800 !important;
+            border-color: $harmony-neutral-700 !important;
+            color: $harmony-neutral-100 !important;
+
+            &:focus {
+                border-color: $harmony-accent !important;
+                box-shadow: 0 0 0 3px rgba($harmony-accent, 0.1) !important;
+            }
+        }
+    }
+}
+
+// Checkboxes and radios
+input[type="checkbox"], input[type="radio"] {
+    accent-color: $harmony-primary !important;
+}
+
+// Select dropdowns
+.select2-container {
+    .select2-selection {
+        background-color: $harmony-neutral-800 !important;
+        border-color: $harmony-neutral-700 !important;
+        color: $harmony-neutral-100 !important;
+    }
+
+    .select2-dropdown {
+        background-color: $harmony-neutral-900 !important;
+        border-color: $harmony-neutral-700 !important;
+
+        .select2-results__option {
+            background-color: $harmony-neutral-900 !important;
+            color: $harmony-neutral-100 !important;
+
+            &:hover, &.select2-results__option--highlighted {
+                background-color: $harmony-neutral-800 !important;
+                color: $harmony-accent !important;
+            }
+        }
+    }
+}
+
+// ============================================
+// TABLES AND DATA GRIDS
+// ============================================
+
+table, .table, .data-table {
+    background-color: $harmony-neutral-900 !important;
+    border-color: $harmony-neutral-700 !important;
+
+    thead, th {
+        background-color: $harmony-neutral-800 !important;
+        border-color: $harmony-neutral-700 !important;
+        color: $harmony-neutral-100 !important;
+    }
+
+    tbody, td {
+        background-color: $harmony-neutral-900 !important;
+        border-color: $harmony-neutral-700 !important;
+        color: $harmony-neutral-100 !important;
+    }
+
+    tr {
+        &:hover {
+            background-color: $harmony-neutral-800 !important;
+        }
+
+        &:nth-child(even) {
+            background-color: $harmony-neutral-800 !important;
+        }
+    }
+}
+
+// ============================================
+// MODALS AND DIALOGS
+// ============================================
+
+.reveal, .modal, .dialog {
+    background-color: $harmony-neutral-900 !important;
+    border-color: $harmony-neutral-700 !important;
+    color: $harmony-neutral-100 !important;
+
+    .reveal-header, .modal-header, .dialog-header {
+        background-color: $harmony-neutral-800 !important;
+        border-color: $harmony-neutral-700 !important;
+        color: $harmony-neutral-100 !important;
+    }
+
+    .reveal-body, .modal-body, .dialog-body {
+        background-color: $harmony-neutral-900 !important;
+    }
+
+    .reveal-footer, .modal-footer, .dialog-footer {
+        background-color: $harmony-neutral-800 !important;
+        border-color: $harmony-neutral-700 !important;
+    }
+}
+
+// ============================================
+// PAGINATION
+// ============================================
+
+.pagination, .pager {
+    background-color: transparent !important;
+
+    .page, .pagination-page, .pagination-item {
+        background-color: $harmony-neutral-800 !important;
+        border-color: $harmony-neutral-700 !important;
+        color: $harmony-neutral-100 !important;
+
+        &:hover {
+            background-color: $harmony-primary !important;
+            border-color: $harmony-primary !important;
+            color: white !important;
+        }
+
+        &.current, &.active {
+            background-color: $harmony-primary !important;
+            color: white !important;
+        }
+    }
+}
+
+// ============================================
+// BADGES AND LABELS
+// ============================================
+
+.label, .badge, .tag {
+    &.success, &.accepted {
+        background-color: $harmony-success !important;
+        color: white !important;
+    }
+    &.warning, &.evaluating {
+        background-color: $harmony-warning !important;
+        color: black !important;
+    }
+    &.alert, &.rejected {
+        background-color: $harmony-error !important;
+        color: white !important;
+    }
+    &.secondary, &.info {
+        background-color: $harmony-neutral-600 !important;
+        color: white !important;
+    }
+    &.primary {
+        background-color: $harmony-primary !important;
+        color: white !important;
+    }
+}
+
+// ============================================
+// ALERTS AND NOTIFICATIONS
+// ============================================
+
+.callout, .alert-box, .flash {
+    &.success {
+        background-color: rgba($harmony-success, 0.1) !important;
+        border-color: $harmony-success !important;
+        color: $harmony-neutral-100 !important;
+    }
+
+    &.warning {
+        background-color: rgba($harmony-warning, 0.1) !important;
+        border-color: $harmony-warning !important;
+        color: $harmony-neutral-100 !important;
+    }
+
+    &.alert, &.error {
+        background-color: rgba($harmony-error, 0.1) !important;
+        border-color: $harmony-error !important;
+        color: $harmony-neutral-100 !important;
+    }
+
+    &.primary {
+        background-color: rgba($harmony-primary, 0.1) !important;
+        border-color: $harmony-primary !important;
+        color: $harmony-neutral-100 !important;
+    }
+}
+
+// ============================================
+// AGGRESSIVE CATCH-ALL SELECTORS
+// ============================================
+
+// Catch any white backgrounds
+[style*="background-color: white"],
+[style*="background-color: #fff"],
+[style*="background-color: #ffffff"],
+[style*="background: white"],
+[style*="background: #fff"],
+[style*="background: #ffffff"],
+[style*="background-color: #f5f5f5"],
+[style*="background-color: #f8f8f8"],
+[style*="background-color: #fafafa"] {
+    background-color: $harmony-neutral-900 !important;
+}
+
+// Catch any black/dark text
+[style*="color: black"],
+[style*="color: #000"],
+[style*="color: #000000"],
+[style*="color: #333"],
+[style*="color: #222"] {
+    color: $harmony-neutral-100 !important;
+}
+
+// Catch any light borders
+[style*="border-color: #eee"],
+[style*="border-color: #ddd"],
+[style*="border-color: #ccc"] {
+    border-color: $harmony-neutral-700 !important;
+}
+
+// ============================================
+// SPECIFIC DECIDIM CLASS PATTERNS
+// ============================================
+
+// Card variations
+[class*="card--"], [class*="-card"] {
+    background-color: $harmony-neutral-900 !important;
+    border-color: $harmony-neutral-700 !important;
+    color: $harmony-neutral-100 !important;
+}
+
+// Section variations
+[class*="section--"], [class*="-section"] {
+    background-color: $harmony-neutral-900 !important;
+    color: $harmony-neutral-100 !important;
+}
+
+// Content areas
+[class*="content"], [class*="container"] {
+    &:not(.button):not(.btn) {
+        background-color: $harmony-bg-dark !important;
+        color: $harmony-neutral-100 !important;
+    }
+}

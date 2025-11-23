@@ -1,0 +1,5 @@
+## Secret key for authenticity.
+SECRET_KEY_BASE: "your_new_secret_here"
+
+## Set the DB URL for postgres & sign in data.
+DATABASE_URL: "postgres://user:YOUR_NEW_PASSWORD@localhost/harmony_decide"

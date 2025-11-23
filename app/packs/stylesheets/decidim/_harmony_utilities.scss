@@ -1,0 +1,16 @@
+// Utility classes for manual fixes
+.harmony-fix-bg { background-color: $harmony-neutral-900 !important; }
+.harmony-fix-text { color: $harmony-neutral-100 !important; }
+.harmony-fix-border { border-color: $harmony-neutral-700 !important; }
+
+// Force dark theme on specific elements
+.force-dark {
+    background-color: $harmony-neutral-900 !important;
+    color: $harmony-neutral-100 !important;
+    border-color: $harmony-neutral-700 !important;
+
+    *:not(.button):not(.btn) {
+        background-color: inherit !important;
+        color: inherit !important;
+    }
+}

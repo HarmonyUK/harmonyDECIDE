@@ -52,3 +52,21 @@
 
 # Ignore Tailwind configuration
 tailwind.config.js
+
+# Secrets - NEVER commit these
+config/application.yml
+config/secrets.yml
+config/database.yml
+.env
+.env.local
+.env.*.local
+.env.production
+
+# Docker compose files with secrets
+docker-compose.yml
+docker-compose-*.yml
+docker-compose.override.yml
+
+# Old files that shouldn't be versioned
+config/application.yml
+decidim_zoom/config/secrets.yml

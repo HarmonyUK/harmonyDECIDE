@@ -2,6 +2,12 @@
 const { config } = require("shakapacker");
 const { InjectManifest } = require("workbox-webpack-plugin");
 const { EsbuildPlugin } = require("esbuild-loader");
+const path = require('path');  // Add this for path resolution
+
+// Define custom entries to merge
+const customEntries = {
+  'decidim_zoom/meeting_sdk': path.resolve(__dirname, '../../decidim_zoom/app/packs/entrypoints/decidim_zoom/meeting_sdk.js')
+};
 
 module.exports = {
   module: {
@@ -86,11 +92,10 @@ module.exports = {
       })
     ]
   },
-  entry: config.entrypoints,
+  entry: { ...config.entrypoints, ...customEntries },  // Merge custom entries here
   plugins: [
     new InjectManifest({
       swSrc: "src/decidim/sw/sw.js",
-
       /**
        * NOTE:
        * @rails/webpacker outputs to '/packs',

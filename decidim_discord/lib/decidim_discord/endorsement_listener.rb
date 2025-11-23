@@ -9,13 +9,11 @@ module DecidimDiscord
       component = proposal.component
       assembly = component.participatory_space
 
-      # Get the threshold from component settings
       threshold = component.settings.try(:votes_threshold) || component.settings.try(:endorsement_threshold)
       return unless threshold
 
       endorsement_count = proposal.proposal_votes_count
 
-      # Only notify on milestone (when threshold is exactly met or just passed)
       return unless endorsement_count >= threshold && (endorsement_count - 1) < threshold
 
       assembly_slug = assembly.slug
