@@ -8,21 +8,33 @@ module HarmonyAuth
   # Check if the user is authenticated via harmonyWEB session
   # @return [Hash, nil] User data from Redis session, or nil if not authenticated
   def harmony_session_data
-    return nil unless harmony_session_id.present?
+    session_id = harmony_session_id
+    Rails.logger.info("HarmonyAuth: Checking session - cookie present: #{session_id.present?}, value: #{session_id&.first(10)}...")
+    return nil unless session_id.present?
 
     begin
       redis = Rails.cache.redis
-      session_key = "harmony:session:#{harmony_session_id}"
+      session_key = "harmony:session:#{session_id}"
+      Rails.logger.info("HarmonyAuth: Querying Redis key: #{session_key}")
+
       session_json = redis.get(session_key)
+      Rails.logger.info("HarmonyAuth: Redis response present: #{session_json.present?}")
 
-      return nil unless session_json.present?
+      if session_json.blank?
+        Rails.logger.warn("HarmonyAuth: No session data found in Redis for key: #{session_key}")
+        return nil
+      end
 
-      JSON.parse(session_json)
+      data = JSON.parse(session_json)
+      Rails.logger.info("HarmonyAuth: Session data parsed successfully - email: #{data['email']}")
+      data
     rescue Redis::BaseError => e
       Rails.logger.error("HarmonyAuth Redis error: #{e.message}")
+      Rails.logger.error(e.backtrace.join("\n"))
       nil
     rescue JSON::ParserError => e
       Rails.logger.error("HarmonyAuth JSON parse error: #{e.message}")
+      Rails.logger.error("Raw session data: #{session_json}")
       nil
     end
   end
@@ -37,16 +49,27 @@ module HarmonyAuth
   # Creates or updates the user if necessary
   # @return [Decidim::User, nil] The authenticated user or nil
   def authenticate_from_harmony_session
+    Rails.logger.info("HarmonyAuth: authenticate_from_harmony_session called")
     session_data = harmony_session_data
-    return nil unless session_data
+
+    unless session_data
+      Rails.logger.warn("HarmonyAuth: No session data available, cannot authenticate")
+      return nil
+    end
 
     email = session_data['email']
     username = session_data['username']
     user_id = session_data['user_id']
 
-    return nil unless email.present?
+    Rails.logger.info("HarmonyAuth: Session data - email: #{email}, username: #{username}, user_id: #{user_id}")
+
+    unless email.present?
+      Rails.logger.error("HarmonyAuth: No email in session data, cannot authenticate")
+      return nil
+    end
 
     # Find or create the user in Decidim
+    Rails.logger.info("HarmonyAuth: Looking up/creating user for email: #{email}")
     user = find_or_create_harmony_user(
       email: email,
       username: username,
@@ -55,8 +78,11 @@ module HarmonyAuth
 
     if user
       # Sign in the user using Devise
+      Rails.logger.info("HarmonyAuth: Signing in user #{email} (ID: #{user.id})")
       sign_in(:user, user)
-      Rails.logger.info("HarmonyAuth: User #{email} authenticated via harmony_session")
+      Rails.logger.info("HarmonyAuth: User #{email} authenticated successfully via harmony_session")
+    else
+      Rails.logger.error("HarmonyAuth: Failed to find or create user for email: #{email}")
     end
 
     user
