@@ -70,3 +70,9 @@ docker-compose.override.yml
 # Old files that shouldn't be versioned
 config/application.yml
 decidim_zoom/config/secrets.yml
+
+# Development analysis files
+repopack-output.txt
+
+# Exclude vendor cache (until needed for deployment)
+vendor/cache/
