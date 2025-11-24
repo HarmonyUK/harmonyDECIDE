@@ -5,13 +5,15 @@
 module HarmonyAuth
   extend ActiveSupport::Concern
 
-  # Get a Redis connection for harmony session validation
-  # @return [Redis] Redis client instance
-  def self.redis_connection
-    @redis_connection ||= begin
-      redis_url = ENV.fetch('REDIS_STORE_URL', 'redis://localhost:6379/0')
-      Rails.logger.info("HarmonyAuth: Connecting to Redis at #{redis_url}")
-      Redis.new(url: redis_url)
+  class << self
+    # Get a Redis connection for harmony session validation
+    # @return [Redis] Redis client instance
+    def redis_connection
+      @redis_connection ||= begin
+        redis_url = ENV.fetch('REDIS_STORE_URL', 'redis://localhost:6379/0')
+        Rails.logger.info("HarmonyAuth: Connecting to Redis at #{redis_url}")
+        Redis.new(url: redis_url)
+      end
     end
   end
 
