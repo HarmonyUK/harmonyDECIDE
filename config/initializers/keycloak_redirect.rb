@@ -20,11 +20,13 @@ Rails.application.config.to_prepare do
 
     def redirect_to_harmony_web
       # Build the callback URL where harmonyWEB should redirect back
-      callback_url = decidim.root_url(host: request.host, protocol: request.protocol)
+      # IMPORTANT: Redirect back to /users/sign_in so authentication check runs
+      callback_url = decidim.user_session_url(host: request.host, protocol: request.protocol)
 
       # Redirect to harmonyWEB login page with callback URL
       harmony_login_url = "https://harmonyuk.org/login?redirect_uri=#{CGI.escape(callback_url)}"
 
+      Rails.logger.info("HarmonyAuth: Redirecting to harmonyWEB with callback: #{callback_url}")
       redirect_to harmony_login_url, allow_other_host: true
     end
 
