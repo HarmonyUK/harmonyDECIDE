@@ -15,7 +15,7 @@ begin
   redis = HarmonyAuth.redis_connection
   ping = redis.ping
   puts "   ✅ Redis connected: #{ping}"
-  puts "   Redis URL: #{ENV['REDIS_STORE_URL'] || 'redis://localhost:6379/0'}"
+  puts "   Redis URL: #{ENV['REDIS_URL'] || ENV['REDIS_STORE_URL'] || 'redis://localhost:6379/1'}"
 rescue => e
   puts "   ❌ Redis connection failed: #{e.message}"
   puts "   Error: #{e.class}"

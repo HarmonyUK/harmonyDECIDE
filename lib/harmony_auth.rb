@@ -10,7 +10,8 @@ module HarmonyAuth
     # @return [Redis] Redis client instance
     def redis_connection
       @redis_connection ||= begin
-        redis_url = ENV.fetch('REDIS_STORE_URL', 'redis://localhost:6379/0')
+        # Check both REDIS_URL and REDIS_STORE_URL (for compatibility)
+        redis_url = ENV['REDIS_URL'] || ENV['REDIS_STORE_URL'] || 'redis://localhost:6379/1'
         Rails.logger.info("HarmonyAuth: Connecting to Redis at #{redis_url}")
         Redis.new(url: redis_url)
       end
