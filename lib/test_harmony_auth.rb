@@ -11,12 +11,15 @@ session_id = ARGV[0] || "REPLACE_WITH_ACTUAL_SESSION_ID"
 
 puts "\n1. Testing Redis Connection..."
 begin
-  redis = Rails.cache.redis
+  require_relative 'harmony_auth'
+  redis = HarmonyAuth.redis_connection
   ping = redis.ping
   puts "   ✅ Redis connected: #{ping}"
-  puts "   Redis URL: #{ENV['REDIS_STORE_URL'] || 'redis://localhost:6379'}"
+  puts "   Redis URL: #{ENV['REDIS_STORE_URL'] || 'redis://localhost:6379/0'}"
 rescue => e
   puts "   ❌ Redis connection failed: #{e.message}"
+  puts "   Error: #{e.class}"
+  puts "   Backtrace: #{e.backtrace.first(3).join("\n   ")}"
   exit 1
 end
 

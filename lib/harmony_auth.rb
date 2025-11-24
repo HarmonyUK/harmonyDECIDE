@@ -5,6 +5,16 @@
 module HarmonyAuth
   extend ActiveSupport::Concern
 
+  # Get a Redis connection for harmony session validation
+  # @return [Redis] Redis client instance
+  def self.redis_connection
+    @redis_connection ||= begin
+      redis_url = ENV.fetch('REDIS_STORE_URL', 'redis://localhost:6379/0')
+      Rails.logger.info("HarmonyAuth: Connecting to Redis at #{redis_url}")
+      Redis.new(url: redis_url)
+    end
+  end
+
   # Check if the user is authenticated via harmonyWEB session
   # @return [Hash, nil] User data from Redis session, or nil if not authenticated
   def harmony_session_data
@@ -13,7 +23,7 @@ module HarmonyAuth
     return nil unless session_id.present?
 
     begin
-      redis = Rails.cache.redis
+      redis = HarmonyAuth.redis_connection
       session_key = "harmony:session:#{session_id}"
       Rails.logger.info("HarmonyAuth: Querying Redis key: #{session_key}")
 
