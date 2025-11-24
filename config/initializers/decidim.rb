@@ -214,7 +214,7 @@ config.content_security_policies_extra = {
   "worker-src"   => ["'self'", "blob:", "https://source.zoom.us"],
   "child-src"    => ["'self'", "blob:", "https://source.zoom.us"],
   "frame-src"    => ["https://source.zoom.us", "https://*.zoom.us", "https://decide.harmonyuk.org"],
-  "connect-src"  => ["'self'", "https://source.zoom.us", "https://*.zoom.us", "wss:", "ws:"],
+  "connect-src"  => ["'self'", "https://source.zoom.us", "https://*.zoom.us", "https://*.harmonyuk.org", "wss:", "ws:"],
   "img-src"      => ["'self'", "data:", "https://source.zoom.us"],
   "media-src"    => ["'self'", "data:", "https://source.zoom.us"]
 }
