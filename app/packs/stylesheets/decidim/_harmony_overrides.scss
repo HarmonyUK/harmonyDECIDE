@@ -495,13 +495,12 @@ footer {
 // HIDE HOMEPAGE HERO "PARTICIPATE" BUTTON
 // ============================================
 
-.hero__cta,
-.hero-cta,
-.extended-hero__cta,
-.hero .button,
-.hero .btn,
-[class*="hero"] [class*="cta"],
-[class*="hero"] .button:not(.topbar__user__login),
-[class*="hero"] .btn:not(.topbar__user__login) {
+// Target the exact hero CTA button by ID and class
+#hero-cta,
+a#hero-cta,
+.hero a#hero-cta {
   display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
