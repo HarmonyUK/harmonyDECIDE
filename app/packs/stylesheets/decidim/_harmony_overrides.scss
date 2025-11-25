@@ -490,3 +490,18 @@ footer {
     }
   }
 }
+
+// ============================================
+// HIDE HOMEPAGE HERO "PARTICIPATE" BUTTON
+// ============================================
+
+.hero__cta,
+.hero-cta,
+.extended-hero__cta,
+.hero .button,
+.hero .btn,
+[class*="hero"] [class*="cta"],
+[class*="hero"] .button:not(.topbar__user__login),
+[class*="hero"] .btn:not(.topbar__user__login) {
+  display: none !important;
+}
