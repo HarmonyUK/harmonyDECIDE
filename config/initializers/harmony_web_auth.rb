@@ -62,13 +62,21 @@ Rails.application.config.to_prepare do
     def auto_authenticate_from_harmony_web
       Rails.logger.debug("HarmonyAuth: auto_authenticate_from_harmony_web called on #{controller_name}##{action_name}")
 
-      # Skip if user is already signed in
-      return if user_signed_in?
-
       # Skip if not HarmonyUK organization
       return unless current_organization&.host == 'decide.harmonyuk.org'
 
-      # Check if harmony_session cookie exists and is valid
+      # If user is already signed in, refresh their session if harmony_session is still valid
+      if user_signed_in?
+        # Refresh Decidim session timestamp if harmony_session is still valid
+        if harmony_authenticated?
+          Rails.logger.debug("HarmonyAuth: Refreshing session for logged-in user")
+          # Reset Devise timeout by touching the session
+          request.env['warden'].set_user(current_user, scope: :user, store: true, run_callbacks: false)
+        end
+        return
+      end
+
+      # Check if harmony_session cookie exists and is valid for new login
       if harmony_authenticated?
         Rails.logger.info("HarmonyAuth: Auto-authenticating user from harmony_session")
         authenticate_from_harmony_session
